@@ -488,14 +488,17 @@ a { color: inherit; }
 }
 
 .waitlist-form input[type="email"] {
-  flex: 1 1 240px;
-  padding: 14px 18px;
+  flex: 1 1 auto;
+  min-width: 240px;
+  height: 52px;
+  padding: 0 18px;
   border-radius: 999px;
   border: 1px solid rgba(246, 241, 231, 0.3);
   background: rgba(246, 241, 231, 0.08);
   color: var(--cream);
   font-size: 0.95rem;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  box-sizing: border-box;
 }
 
 .waitlist-form input[type="email"]::placeholder {
@@ -585,6 +588,10 @@ a { color: inherit; }
 @media (max-width: 480px) {
   .waitlist-form {
     flex-direction: column;
+  }
+  .waitlist-form input[type="email"] {
+    width: 100%;
+    min-width: 0;
   }
   .waitlist-form .btn {
     width: 100%;
