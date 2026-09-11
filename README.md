@@ -6,7 +6,7 @@ Flagship release: hunch fiber (psyllium husk). Static site, no build step — pl
 ## Structure
 
 - `index.html` — the page (hero, problem, solution, waitlist, footer)
-- `styles.css` — all styling (sage/cream palette, Fraunces + Inter)
+- `styles.css` — all styling (cream/olive/lime palette, Plus Jakarta Sans throughout)
 - `script.js` — waitlist form submit handling + footer year
 - `CNAME` — empty placeholder; add your real domain here before running paid ads
 - `.nojekyll` — tells GitHub Pages to serve the files as-is (skip Jekyll processing)
