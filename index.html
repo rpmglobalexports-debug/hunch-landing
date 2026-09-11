@@ -18,15 +18,25 @@
 <meta name="twitter:title" content="hunch — one ingredient, done right">
 <meta name="twitter:description" content="First up: the fiber gap nobody's talking about. Single-ingredient superfoods, built for people who already stack.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%237C8B6F'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23F6F2E9' font-family='Georgia,serif'%3Eh%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2314150F'/%3E%3Ctext x='50' y='70' font-size='56' font-weight='800' text-anchor='middle' fill='%23C6DB3A' font-family='Arial,sans-serif'%3Eh%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="swooshGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E0F09"/>
+      <stop offset="50%" stop-color="#3D402C"/>
+      <stop offset="100%" stop-color="#C8B535"/>
+    </linearGradient>
+  </defs>
+</svg>
 
 <header class="site-header">
   <div class="wrap header-inner">
@@ -39,6 +49,9 @@
 
   <!-- 1. HERO -->
   <section class="hero">
+    <svg class="hero-swoosh" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M1440,0 L1440,700 L560,700 C900,520 680,220 1440,0 Z" fill="url(#swooshGradient)"/>
+    </svg>
     <div class="wrap">
       <p class="eyebrow">hunch · single-ingredient superfoods</p>
       <h1>one ingredient,<br>done right.</h1>
@@ -65,21 +78,26 @@
         eggs by the dozen, a shaker permanently in the bag. Fiber never got the memo.
       </p>
 
-      <div class="stat-compare" aria-hidden="false">
-        <div class="stat-row">
-          <div class="stat-label">people hitting their protein target</div>
-          <div class="stat-bar-track">
-            <div class="stat-bar stat-bar-high"><span>most of them</span></div>
-          </div>
+      <div class="stat-callout">
+        <div class="stat-item">
+          <span class="stat-number">15–20g</span>
+          <span class="stat-caption">average daily fiber intake in India</span>
         </div>
-        <div class="stat-row">
-          <div class="stat-label">people hitting 30g+ fiber a day</div>
-          <div class="stat-bar-track">
-            <div class="stat-bar stat-bar-low"><span>almost none</span></div>
-          </div>
+        <div class="stat-vs" aria-hidden="true">vs</div>
+        <div class="stat-item">
+          <span class="stat-number">25–30g</span>
+          <span class="stat-caption">recommended daily intake</span>
         </div>
       </div>
+      <p class="stat-footnote">
+        Fewer than <strong>10–15% of adults</strong> actually hit that target.
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13293455/" target="_blank" rel="noopener">Source: peer-reviewed study, PMC, 2026 ↗</a>
+      </p>
 
+      <p class="lede">
+        That's the national average, not a gym-specific one — but if you're deep in a bulk, chasing 2g/kg
+        protein five days a week, there's no real reason to assume you're the exception.
+      </p>
       <p class="lede">
         Stack more protein onto a gut that can't move it through properly, and you're not optimizing —
         you're just backing up the pipes. The bloating you blame on whey, the energy crash you blame on sleep,
@@ -105,16 +123,13 @@
         <p class="claim">100% husk. Nothing else. One clear job.</p>
         <p class="usage">Rip a sachet, mix it into water or your shaker, drink — takes less effort than foam rolling.</p>
       </div>
-      <div class="solution-visual" aria-hidden="true">
-        <svg class="sachet" viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 40 h200 v230 a20 20 0 0 1 -20 20 h-160 a20 20 0 0 1 -20 -20 z" fill="var(--sage)"/>
-          <path d="M20 40 q0 -25 25 -25 h150 q25 0 25 25 v18 h-200 z" fill="var(--sage-dark)"/>
-          <circle cx="120" cy="15" r="6" fill="var(--sage-dark)"/>
-          <rect x="45" y="110" width="150" height="110" rx="10" fill="var(--cream)"/>
-          <text x="120" y="155" text-anchor="middle" class="sachet-word">hunch</text>
-          <text x="120" y="178" text-anchor="middle" class="sachet-sub">fiber</text>
-          <text x="120" y="202" text-anchor="middle" class="sachet-sub2">psyllium husk · 1 sachet</text>
-        </svg>
+      <div class="solution-visual">
+        <img
+          class="product-photo"
+          src="product-photo.jpeg"
+          alt="hunch fiber pouch and single-serve stick pack on a desk with a shaker bottle, plant, and notebook"
+          width="1312" height="1199"
+          loading="lazy">
       </div>
     </div>
   </section>
@@ -141,6 +156,10 @@
   </section>
 
 </main>
+
+<svg class="section-swoosh" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,50 C240,10 480,90 720,50 C960,10 1200,90 1440,50 L1440,100 L0,100 Z" fill="url(#swooshGradient)"/>
+</svg>
 
 <!-- 5. FOOTER -->
 <footer class="site-footer">
