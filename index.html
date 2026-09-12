@@ -68,16 +68,65 @@
           <span class="hero-note">no spam. just the drop date.</span>
         </div>
       </div>
-      <div class="hero-visual">
+      <div class="hero-visual" id="hero-visual">
         <img
           class="hero-photo"
-          src="product-photo.jpeg"
+          id="hero-static-photo"
+          data-src="product-photo.jpeg"
           alt="hunch fiber pouch and single-serve stick pack on a desk with a shaker bottle, plant, and notebook"
-          width="1312" height="1199"
-          loading="lazy">
+          width="1312" height="1199">
+
+        <div class="hero-carousel" id="hero-carousel">
+          <div class="hero-slide">
+            <img data-src="carousel-front.jpg" alt="hunch fiber pouch and stick pack on a table with a plant and water glass" width="500" height="495">
+            <div class="hero-slide-scrim"></div>
+            <p class="hero-slide-caption">one ingredient. nothing else.</p>
+          </div>
+          <div class="hero-slide">
+            <img data-src="texture-divider.jpg" alt="hunch fiber stick pack lying in a pile of psyllium husk powder" width="456" height="498" loading="lazy">
+            <div class="hero-slide-scrim"></div>
+            <p class="hero-slide-caption">5g fiber per sachet</p>
+          </div>
+          <div class="hero-slide">
+            <img data-src="carousel-back-label.jpg" alt="Back of the hunch fiber pouch showing ingredients and directions for use" width="496" height="500" loading="lazy">
+            <div class="hero-slide-scrim"></div>
+            <p class="hero-slide-caption">gluten-free · non-gmo · vegan</p>
+          </div>
+          <div class="hero-slide">
+            <img data-src="carousel-topdown.jpg" alt="Top-down view of the hunch fiber pouch and stick pack next to a bowl of powder and a glass of water" width="500" height="464" loading="lazy">
+            <div class="hero-slide-scrim"></div>
+            <p class="hero-slide-caption">mixes into any shaker</p>
+          </div>
+        </div>
+        <div class="hero-carousel-dots" id="hero-carousel-dots">
+          <button class="dot is-active" aria-label="Slide 1"></button>
+          <button class="dot" aria-label="Slide 2"></button>
+          <button class="dot" aria-label="Slide 3"></button>
+          <button class="dot" aria-label="Slide 4"></button>
+        </div>
       </div>
     </div>
   </section>
+
+  <script>
+    // Resolve which hero visual (desktop static photo vs mobile carousel) loads
+    // its images, inline and as early as possible, so the non-applicable
+    // variant never fetches anything (data-src, not src, avoids the browser's
+    // preload scanner picking both up).
+    (function () {
+      var isMobile = window.matchMedia('(max-width: 899px)').matches;
+      var heroVisual = document.getElementById('hero-visual');
+      if (isMobile) {
+        heroVisual.querySelectorAll('.hero-carousel img[data-src]').forEach(function (img) {
+          img.src = img.getAttribute('data-src');
+        });
+      } else {
+        var staticImg = document.getElementById('hero-static-photo');
+        staticImg.src = staticImg.getAttribute('data-src');
+      }
+      heroVisual.classList.add(isMobile ? 'is-mobile-hero' : 'is-desktop-hero');
+    })();
+  </script>
 
   <!-- TRUST BADGES -->
   <section class="trust-badges">
@@ -119,7 +168,7 @@
   </section>
 
   <!-- 2. PROBLEM -->
-  <section class="problem" id="problem">
+  <section class="problem reveal" id="problem">
     <div class="wrap">
       <p class="eyebrow eyebrow-dark">the gap</p>
       <h2>your macros are dialed in.<br>your fiber isn't.</h2>
@@ -128,7 +177,7 @@
         eggs by the dozen, a shaker permanently in the bag. Fiber never got the memo.
       </p>
 
-      <div class="stat-row-wrap">
+      <div class="stat-row-wrap reveal">
         <div class="macro-ring" aria-hidden="true">
           <svg viewBox="0 0 100 100">
             <g transform="rotate(-90 50 50)">
@@ -141,12 +190,12 @@
         </div>
         <div class="stat-callout">
           <div class="stat-item">
-            <span class="stat-number">15–20g</span>
+            <span class="stat-number" data-count-a="15" data-count-b="20" data-suffix="g">15–20g</span>
             <span class="stat-caption">average daily fiber intake in India</span>
           </div>
           <div class="stat-vs" aria-hidden="true">vs</div>
           <div class="stat-item">
-            <span class="stat-number">25–30g</span>
+            <span class="stat-number" data-count-a="25" data-count-b="30" data-suffix="g">25–30g</span>
             <span class="stat-caption">recommended daily intake</span>
           </div>
         </div>
@@ -160,6 +209,16 @@
         That's the national average, not a gym-specific one — but if you're deep in a bulk, chasing 2g/kg
         protein five days a week, there's no real reason to assume you're the exception.
       </p>
+
+      <div class="problem-photo-inset">
+        <img
+          src="lifestyle-books.jpg"
+          alt="hunch fiber pouch and stick pack next to a stack of habit and nutrition books, with a mug"
+          width="512" height="512"
+          loading="lazy"
+          class="inset-photo">
+      </div>
+
       <p class="lede">
         Stack more protein onto a gut that can't move it through properly, and you're not optimizing —
         you're just backing up the pipes. The bloating you blame on whey, the energy crash you blame on sleep,
@@ -171,8 +230,12 @@
     </div>
   </section>
 
+  <div class="texture-divider" aria-hidden="true">
+    <img src="texture-divider.jpg" alt="" width="512" height="512" loading="lazy">
+  </div>
+
   <!-- 3. SOLUTION / TEASER -->
-  <section class="solution" id="solution">
+  <section class="solution reveal" id="solution">
     <div class="wrap solution-inner">
       <div class="solution-copy">
         <p class="eyebrow">the fix · flagship release</p>
@@ -231,7 +294,7 @@
   </section>
 
   <!-- 4. WAITLIST CTA -->
-  <section class="waitlist" id="waitlist">
+  <section class="waitlist reveal" id="waitlist">
     <div class="wrap waitlist-inner">
       <p class="eyebrow eyebrow-light">early access</p>
       <h2>be first to close the gap.</h2>
@@ -258,7 +321,7 @@
 </svg>
 
 <!-- 5. FOOTER -->
-<footer class="site-footer">
+<footer class="site-footer reveal">
   <div class="wrap footer-inner">
     <div class="footer-word">hunch</div>
     <p class="footer-tagline">single-ingredient superfoods. fiber's just the first.</p>
@@ -269,6 +332,10 @@
     <p class="footer-copy">&copy; <span id="year"></span> hunch. all rights reserved.</p>
   </div>
 </footer>
+
+<div class="mobile-cta-bar" id="mobile-cta">
+  <a href="#waitlist" class="btn btn-primary">join the waitlist</a>
+</div>
 
 <script src="script.js"></script>
 </body>

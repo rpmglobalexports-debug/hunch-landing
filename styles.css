@@ -18,6 +18,27 @@
 
 * { box-sizing: border-box; }
 
+/* ---------- scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 380ms ease, transform 380ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -97,14 +118,19 @@ a { color: inherit; }
   border: 1.5px solid var(--olive-dark);
   padding: 8px 16px;
   border-radius: 999px;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
   white-space: nowrap;
+  display: inline-block;
 }
 
 .nav-cta:hover {
   background: var(--lime);
   border-color: var(--lime);
   color: var(--near-black);
+}
+
+.nav-cta:active {
+  transform: scale(0.97);
 }
 
 /* ---------- shared type ---------- */
@@ -161,11 +187,91 @@ a { color: inherit; }
 }
 
 .hero-photo {
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 62% 45%;
+}
+
+.is-desktop-hero .hero-photo {
+  display: block;
+}
+
+/* ---------- mobile hero carousel ---------- */
+
+.hero-carousel,
+.hero-carousel-dots {
+  display: none;
+}
+
+.is-mobile-hero .hero-carousel {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.is-mobile-hero .hero-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  aspect-ratio: 4 / 5;
+}
+
+.hero-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-slide-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 21, 15, 0.78) 0%, rgba(20, 21, 15, 0) 55%);
+  pointer-events: none;
+}
+
+.hero-slide-caption {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  margin: 0;
+  color: var(--cream);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 4vw, 1.3rem);
+  letter-spacing: -0.01em;
+}
+
+.is-mobile-hero .hero-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 0;
+}
+
+.hero-carousel-dots .dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--line);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-carousel-dots .dot.is-active {
+  background: var(--olive-dark);
+  transform: scale(1.35);
 }
 
 @media (min-width: 900px) {
@@ -261,7 +367,7 @@ a { color: inherit; }
   transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
 }
 
-.btn:active { transform: scale(0.98); }
+.btn:active { transform: scale(0.97); }
 
 .btn-primary {
   background: var(--lime);
@@ -636,6 +742,75 @@ a { color: inherit; }
   font-size: 0.75rem;
   color: rgba(246, 241, 231, 0.45);
   margin: 0;
+}
+
+/* ---------- problem photo inset ---------- */
+
+.problem-photo-inset {
+  margin: 32px 0;
+}
+
+.inset-photo {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(20, 21, 15, 0.18);
+}
+
+/* ---------- texture divider ---------- */
+
+.texture-divider {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.texture-divider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+@media (min-width: 900px) {
+  .texture-divider {
+    height: 300px;
+  }
+}
+
+/* ---------- mobile CTA bar ---------- */
+
+.mobile-cta-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  transform: translateY(110%);
+  transition: transform 280ms ease;
+}
+
+.mobile-cta-bar.is-shown {
+  transform: translateY(0);
+}
+
+.mobile-cta-bar .btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .mobile-cta-bar {
+    display: none;
+  }
 }
 
 /* ---------- responsive ---------- */
