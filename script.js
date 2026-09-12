@@ -128,16 +128,22 @@ function animateStatNumber(el) {
   requestAnimationFrame(tick);
 }
 
-// ---------- hero carousel dots ----------
-// Syncs the active dot to scroll position (rAF-throttled) and lets dots
-// jump to a slide. Only relevant on mobile, where the carousel is visible.
+// ---------- hero carousel: dots + true infinite loop ----------
+// Only runs on mobile, where the carousel is the visible hero. Clones slide 1
+// to the end and the last slide to the start, so swiping past either edge
+// keeps showing real content; once the browser settles scroll on a clone
+// (native 'scrollend'), we instantly (no visible transition) reset scrollLeft
+// to the matching real slide - imperceptible since the clone is identical.
 
 const heroCarousel = document.getElementById('hero-carousel');
 const heroDotsWrap = document.getElementById('hero-carousel-dots');
+const heroVisualEl = document.getElementById('hero-visual');
+const isMobileHero = heroVisualEl && heroVisualEl.classList.contains('is-mobile-hero');
 
-if (heroCarousel && heroDotsWrap) {
+if (heroCarousel && heroDotsWrap && isMobileHero) {
   const dots = Array.from(heroDotsWrap.querySelectorAll('.dot'));
   const slides = Array.from(heroCarousel.querySelectorAll('.hero-slide'));
+  const realCount = slides.length;
 
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
@@ -145,12 +151,42 @@ if (heroCarousel && heroDotsWrap) {
     });
   });
 
+  let cloneOffset = 0; // shifts scroll-position -> dot-index math once clones exist
+
+  if (realCount > 1) {
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[realCount - 1].cloneNode(true);
+    firstClone.setAttribute('aria-hidden', 'true');
+    lastClone.setAttribute('aria-hidden', 'true');
+    // The brand overlay (eyebrow/h1/CTA) only belongs on the real slide 1.
+    const staleOverlay = firstClone.querySelector('.hero-brand-overlay');
+    if (staleOverlay) staleOverlay.remove();
+    heroCarousel.appendChild(firstClone);
+    heroCarousel.insertBefore(lastClone, slides[0]);
+    cloneOffset = 1;
+    heroCarousel.scrollLeft = heroCarousel.clientWidth * cloneOffset;
+
+    if ('onscrollend' in window) {
+      heroCarousel.addEventListener('scrollend', () => {
+        const w = heroCarousel.clientWidth || 1;
+        const idx = Math.round(heroCarousel.scrollLeft / w);
+        if (idx === 0) {
+          heroCarousel.scrollLeft = w * realCount; // clone-of-last -> real last
+        } else if (idx === realCount + 1) {
+          heroCarousel.scrollLeft = w * cloneOffset; // clone-of-first -> real first
+        }
+      });
+    }
+  }
+
   heroCarousel.addEventListener(
     'scroll',
     () => {
-      const slideWidth = heroCarousel.clientWidth || 1;
-      const activeIndex = Math.round(heroCarousel.scrollLeft / slideWidth);
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeIndex));
+      const w = heroCarousel.clientWidth || 1;
+      let idx = Math.round(heroCarousel.scrollLeft / w) - cloneOffset;
+      if (idx < 0) idx = realCount - 1;
+      if (idx > realCount - 1) idx = 0;
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
     },
     { passive: true }
   );

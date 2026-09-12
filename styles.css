@@ -189,7 +189,7 @@ a { color: inherit; }
 /* ---------- hero ---------- */
 
 .hero {
-  padding: 48px 0 0;
+  padding: 0;
   overflow: hidden;
 }
 
@@ -205,13 +205,10 @@ a { color: inherit; }
 }
 
 @media (max-width: 899px) {
+  /* The carousel IS the mobile hero now - the text/CTA block lives as an
+     overlay on slide 1 instead (see .hero-brand-overlay below). */
   .hero-copy {
-    /* Reuses carousel-front.jpg, already fetched eagerly for carousel slide 1 -
-       zero extra bytes. Fixes the mobile first-screen-is-text-only problem by
-       giving the hero a faint product-photo presence before any scrolling. */
-    background-image: linear-gradient(rgba(246, 241, 231, 0.91), rgba(246, 241, 231, 0.97)), url('carousel-front.jpg');
-    background-size: cover;
-    background-position: center 15%;
+    display: none;
   }
 }
 
@@ -257,11 +254,14 @@ a { color: inherit; }
   position: relative;
   flex: 0 0 100%;
   scroll-snap-align: start;
-  aspect-ratio: 4 / 5;
+  overflow: hidden;
 }
 
-.hero-slide {
-  overflow: hidden;
+.is-mobile-hero .hero-slide {
+  /* Full-bleed: the carousel fills the screen below the sticky header, so
+     it's the actual first thing visible on load, nothing else competing. */
+  height: calc(100vh - 72px);
+  height: calc(100svh - 72px);
 }
 
 .hero-slide img {
@@ -301,8 +301,39 @@ a { color: inherit; }
 .hero-slide-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(20, 21, 15, 0.78) 0%, rgba(20, 21, 15, 0) 55%);
+  background: linear-gradient(to top, rgba(20, 21, 15, 0.8) 0%, rgba(20, 21, 15, 0) 55%);
   pointer-events: none;
+  z-index: 1;
+}
+
+.hero-slide-scrim-top {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(20, 21, 15, 0.75) 0%, rgba(20, 21, 15, 0) 44%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-brand-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 22px 20px 0;
+}
+
+.hero-brand-overlay .eyebrow {
+  color: rgba(246, 241, 231, 0.85);
+  margin-bottom: 10px;
+}
+
+.hero-brand-overlay h1 {
+  color: var(--cream);
+  font-size: clamp(1.9rem, 8.5vw, 2.5rem);
+  line-height: 1.04;
+  max-width: 10ch;
+  margin-bottom: 18px;
 }
 
 .hero-slide-caption {
@@ -310,11 +341,27 @@ a { color: inherit; }
   left: 20px;
   right: 20px;
   bottom: 18px;
+  z-index: 2;
   margin: 0;
   color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-slide-problem {
   font-weight: 700;
-  font-size: clamp(1.05rem, 4vw, 1.3rem);
+  font-size: clamp(1.15rem, 5vw, 1.45rem);
+  line-height: 1.15;
   letter-spacing: -0.01em;
+}
+
+.hero-slide-solution {
+  font-weight: 500;
+  font-size: 0.88rem;
+  line-height: 1.42;
+  color: rgba(246, 241, 231, 0.9);
+  max-width: 34ch;
 }
 
 .is-mobile-hero .hero-carousel-dots {
@@ -457,7 +504,8 @@ a { color: inherit; }
   100% { box-shadow: 0 0 0 0 rgba(207, 226, 27, 0); }
 }
 
-.hero-actions .btn-primary {
+.hero-actions .btn-primary,
+.hero-brand-overlay .btn-primary {
   animation: cta-glow 1.6s ease-out 500ms 1;
 }
 
@@ -471,6 +519,7 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-actions .btn-primary,
+  .hero-brand-overlay .btn-primary,
   .mobile-cta-bar.is-shown .btn,
   .reveal.is-visible .btn-light {
     animation: none;
