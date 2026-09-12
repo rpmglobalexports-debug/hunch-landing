@@ -200,7 +200,7 @@ a { color: inherit; }
 .hero-flagship {
   font-size: clamp(1.1rem, 2.6vw, 1.35rem);
   max-width: 34ch;
-  margin: 18px 0 22px;
+  margin: 18px 0 20px;
   color: var(--ink);
 }
 
@@ -208,11 +208,28 @@ a { color: inherit; }
   color: var(--olive-dark);
 }
 
-.hero-sub {
-  max-width: 56ch;
-  font-size: 1.02rem;
-  color: var(--muted);
-  margin: 0 0 32px;
+.hero-problems {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-problems li {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.hero-close {
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  color: var(--olive-dark);
+  margin: 0 0 28px;
 }
 
 .hero-actions {
@@ -260,59 +277,48 @@ a { color: inherit; }
 
 .btn-light:hover { background: var(--lime-dark); }
 
-/* ---------- value props ---------- */
+/* ---------- trust badges ---------- */
 
-.value-props {
-  padding: 8px 0 56px;
+.trust-badges {
+  padding: 36px 0 4px;
 }
 
-.value-props-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
+.trust-badges-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 56px;
+  flex-wrap: wrap;
   text-align: center;
 }
 
-.value-prop-icon {
-  width: 56px;
-  height: 56px;
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-badge-icon {
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  background: var(--cream-alt);
-  color: var(--olive-dark);
+  background: var(--olive-dark);
+  color: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
 }
 
-.value-prop-icon svg {
-  width: 26px;
-  height: 26px;
+.trust-badge-icon svg {
+  width: 34px;
+  height: 34px;
 }
 
-.value-prop-label {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin: 0 0 6px;
-  color: var(--ink);
-}
-
-.value-prop-desc {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-@media (min-width: 720px) {
-  .value-props-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    text-align: left;
-  }
-  .value-prop-icon {
-    margin: 0 0 16px;
-  }
+.trust-badge-label {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--olive-dark);
 }
 
 /* ---------- problem ---------- */
