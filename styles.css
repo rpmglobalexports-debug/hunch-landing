@@ -258,10 +258,14 @@ a { color: inherit; }
 }
 
 .is-mobile-hero .hero-slide {
-  /* Full-bleed: the carousel fills the screen below the sticky header, so
-     it's the actual first thing visible on load, nothing else competing. */
+  /* Full-bleed-feeling, but capped: the source photos are roughly square
+     (~500x495), and object-fit:cover on a full-viewport-tall/narrow frame
+     was cropping away ~47% of the image width to fill it - cutting off the
+     "DAILY FIBRE SUPPLEMENT" text printed near the pack's edges. Capping the
+     height keeps this prominent and full-bleed-feeling without that crop. */
   height: calc(100vh - 72px);
   height: calc(100svh - 72px);
+  max-height: 460px;
 }
 
 .hero-slide img {
@@ -276,10 +280,19 @@ a { color: inherit; }
    see the static image, no fallback JS needed. */
 
 @supports (animation-timeline: view()) {
-  .hero-photo,
-  .hero-slide img {
+  .hero-photo {
     transform: scale(1.12);
     animation: hero-parallax linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+
+  .hero-slide img {
+    /* Smaller zoom than the desktop photo - the mobile crop is already
+       tighter (see .is-mobile-hero .hero-slide above), so a big parallax
+       scale here would re-introduce the label-text cropping this is fixing. */
+    transform: scale(1.03);
+    animation: hero-parallax-subtle linear both;
     animation-timeline: view();
     animation-range: cover 0% cover 100%;
   }
@@ -287,6 +300,11 @@ a { color: inherit; }
   @keyframes hero-parallax {
     from { transform: scale(1.12) translateY(-22px); }
     to { transform: scale(1.12) translateY(22px); }
+  }
+
+  @keyframes hero-parallax-subtle {
+    from { transform: scale(1.03) translateY(-8px); }
+    to { transform: scale(1.03) translateY(8px); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -309,7 +327,7 @@ a { color: inherit; }
 .hero-slide-scrim-top {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(20, 21, 15, 0.75) 0%, rgba(20, 21, 15, 0) 44%);
+  background: linear-gradient(to bottom, rgba(20, 21, 15, 0.82) 0%, rgba(20, 21, 15, 0.55) 38%, rgba(20, 21, 15, 0) 62%);
   pointer-events: none;
   z-index: 1;
 }
@@ -333,7 +351,22 @@ a { color: inherit; }
   font-size: clamp(1.9rem, 8.5vw, 2.5rem);
   line-height: 1.04;
   max-width: 10ch;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
+}
+
+.hero-tagline {
+  font-weight: 600;
+  font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+  letter-spacing: -0.005em;
+  margin: 0 0 18px;
+}
+
+.hero-brand-overlay .hero-tagline {
+  color: rgba(246, 241, 231, 0.95);
+}
+
+.hero-copy .hero-tagline {
+  color: var(--olive-dark);
 }
 
 .hero-slide-caption {
