@@ -280,19 +280,13 @@ a { color: inherit; }
    see the static image, no fallback JS needed. */
 
 @supports (animation-timeline: view()) {
+  /* Desktop only. Removed from the mobile carousel (.hero-slide img) after a
+     performance audit: decorative, non-essential, and one more GPU-composited
+     layer per slide on top of everything else running on scroll - cut for
+     mobile specifically since that's the surface with reported jank. */
   .hero-photo {
     transform: scale(1.12);
     animation: hero-parallax linear both;
-    animation-timeline: view();
-    animation-range: cover 0% cover 100%;
-  }
-
-  .hero-slide img {
-    /* Smaller zoom than the desktop photo - the mobile crop is already
-       tighter (see .is-mobile-hero .hero-slide above), so a big parallax
-       scale here would re-introduce the label-text cropping this is fixing. */
-    transform: scale(1.03);
-    animation: hero-parallax-subtle linear both;
     animation-timeline: view();
     animation-range: cover 0% cover 100%;
   }
@@ -302,14 +296,8 @@ a { color: inherit; }
     to { transform: scale(1.12) translateY(22px); }
   }
 
-  @keyframes hero-parallax-subtle {
-    from { transform: scale(1.03) translateY(-8px); }
-    to { transform: scale(1.03) translateY(8px); }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .hero-photo,
-    .hero-slide img {
+    .hero-photo {
       animation: none;
       transform: none;
     }
@@ -530,31 +518,57 @@ a { color: inherit; }
 .btn-light:hover { background: var(--lime-dark); }
 
 /* ---------- CTA glow (draws the eye once, not a loop) ---------- */
-
-@keyframes cta-glow {
-  0% { box-shadow: 0 0 0 0 rgba(207, 226, 27, 0); }
-  35% { box-shadow: 0 0 0 9px rgba(207, 226, 27, 0.22); }
-  100% { box-shadow: 0 0 0 0 rgba(207, 226, 27, 0); }
-}
+/* A perf audit flagged the old version of this: it animated box-shadow
+   directly, which is paint-triggering (not GPU-composited) - and it fires
+   exactly when a section scrolls into view, i.e. exactly when the page is
+   already busy with scroll + the .reveal/.word-reveal transitions. Rebuilt
+   as a ::after ring animating only opacity + transform (both composited),
+   so it no longer adds paint work at the moment scrolling is happening. */
 
 .hero-actions .btn-primary,
-.hero-brand-overlay .btn-primary {
-  animation: cta-glow 1.6s ease-out 500ms 1;
+.hero-brand-overlay .btn-primary,
+.mobile-cta-bar .btn,
+.waitlist-form .btn-light {
+  position: relative;
 }
 
-.mobile-cta-bar.is-shown .btn {
-  animation: cta-glow 1.6s ease-out 250ms 1;
+.hero-actions .btn-primary::after,
+.hero-brand-overlay .btn-primary::after,
+.mobile-cta-bar .btn::after,
+.waitlist-form .btn-light::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border-radius: inherit;
+  border: 9px solid rgba(207, 226, 27, 0.22);
+  opacity: 0;
+  pointer-events: none;
 }
 
-.reveal.is-visible .btn-light {
-  animation: cta-glow 1.6s ease-out 200ms 1;
+.hero-actions .btn-primary::after,
+.hero-brand-overlay .btn-primary::after {
+  animation: cta-glow-ring 1.6s ease-out 500ms 1;
+}
+
+.mobile-cta-bar.is-shown .btn::after {
+  animation: cta-glow-ring 1.6s ease-out 250ms 1;
+}
+
+.reveal.is-visible .btn-light::after {
+  animation: cta-glow-ring 1.6s ease-out 200ms 1;
+}
+
+@keyframes cta-glow-ring {
+  0% { opacity: 0; transform: scale(0.85); }
+  35% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.12); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-actions .btn-primary,
-  .hero-brand-overlay .btn-primary,
-  .mobile-cta-bar.is-shown .btn,
-  .reveal.is-visible .btn-light {
+  .hero-actions .btn-primary::after,
+  .hero-brand-overlay .btn-primary::after,
+  .mobile-cta-bar.is-shown .btn::after,
+  .reveal.is-visible .btn-light::after {
     animation: none;
   }
 }
