@@ -123,14 +123,29 @@ a { color: inherit; }
   padding-bottom: 16px;
 }
 
+.wordmark-link {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 3px;
+  text-decoration: none;
+}
+
 .wordmark {
   font-family: 'Space Grotesk', 'Arial', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: lowercase;
-  text-decoration: none;
   color: var(--ink);
   letter-spacing: -0.02em;
+}
+
+.wordmark-sub {
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .nav-cta {
@@ -154,6 +169,41 @@ a { color: inherit; }
 
 .nav-cta:active {
   transform: scale(0.97);
+}
+
+/* ---------- brand lockup (hunch / fibre, matches the pack) ---------- */
+
+.brand-lockup {
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.brand-lockup-name {
+  display: block;
+  font-family: 'Space Grotesk', 'Arial', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.brand-lockup-sub {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--olive-dark);
+  margin-top: 4px;
+}
+
+.brand-lockup-light .brand-lockup-name {
+  color: var(--cream);
+}
+
+.brand-lockup-light .brand-lockup-sub {
+  color: rgba(246, 241, 231, 0.75);
 }
 
 /* ---------- shared type ---------- */
@@ -764,6 +814,34 @@ a { color: inherit; }
   margin: 4px 0 18px;
 }
 
+.claim-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.claim-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.claim-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lime-dark);
+}
+
 .usage {
   font-size: 0.95rem;
   color: var(--muted);
@@ -947,6 +1025,11 @@ a { color: inherit; }
   text-align: left;
 }
 
+.footer-word-wrap {
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
 .footer-word {
   font-family: 'Space Grotesk', 'Arial', sans-serif;
   font-weight: 700;
@@ -954,7 +1037,15 @@ a { color: inherit; }
   text-transform: lowercase;
   letter-spacing: -0.02em;
   color: var(--cream);
-  margin-bottom: 6px;
+}
+
+.footer-word-sub {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 231, 0.55);
+  margin-top: 4px;
 }
 
 .footer-tagline {
