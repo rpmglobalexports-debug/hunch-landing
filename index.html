@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>hunch — one ingredient, done right</title>
-<meta name="description" content="hunch is a platform for single-ingredient superfoods. First up: a fiber supplement for people who already stack creatine, protein and BCAAs — and skipped the one thing quietly capping their gains.">
+<meta name="description" content="hunch is a platform for single-ingredient superfoods. First up: a fibre supplement for people who already stack creatine, protein and BCAAs — and skipped the one thing quietly capping their gains.">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="hunch — one ingredient, done right">
-<meta property="og:description" content="First up: the fiber gap nobody's talking about — for people already tracking everything else. Single-ingredient superfoods, one at a time.">
+<meta property="og:description" content="First up: the fibre gap nobody's talking about — for people already tracking everything else. Single-ingredient superfoods, one at a time.">
 <meta property="og:url" content="https://hunch.example.com/">
 <meta property="og:site_name" content="hunch">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hunch — one ingredient, done right">
-<meta name="twitter:description" content="First up: the fiber gap nobody's talking about — for people already tracking everything else. Single-ingredient superfoods, one at a time.">
+<meta name="twitter:description" content="First up: the fibre gap nobody's talking about — for people already tracking everything else. Single-ingredient superfoods, one at a time.">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2314150F'/%3E%3Ctext x='50' y='70' font-size='56' font-weight='800' text-anchor='middle' fill='%23C6DB3A' font-family='Arial,sans-serif'%3Eh%3C/text%3E%3C/svg%3E">
 
@@ -25,6 +25,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
+
+<!-- Meta Pixel: swap YOUR_PIXEL_ID for the real ID. Stays off (no requests) until you do. -->
+<script>
+  (function () {
+    var PIXEL_ID = 'YOUR_PIXEL_ID';
+    if (PIXEL_ID.indexOf('YOUR_') === 0) return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID);
+    fbq('track', 'PageView');
+  })();
+</script>
 </head>
 <body>
 
@@ -59,16 +74,9 @@
           <span class="brand-lockup-sub">fibre</span>
         </div>
         <h1>one ingredient,<br>done right.</h1>
-        <p class="hero-tagline">A daily fibre supplement.</p>
-        <p class="hero-flagship">The fiber gap nobody's talking about — for people already tracking everything else.</p>
+        <p class="hero-tagline">A daily psyllium husk fibre supplement.</p>
 
-        <ul class="hero-problems">
-          <li>Protein bloat you can't figure out.</li>
-          <li>The post-lift crash you blame on timing.</li>
-          <li>Hungry two hours after a "clean" meal.</li>
-        </ul>
-
-        <p class="hero-close">We got you.</p>
+        <p class="hero-gap">You track protein, calories and steps.<br>Fibre is the missing number.</p>
 
         <div class="hero-actions">
           <a href="#waitlist" class="btn btn-primary">join the waitlist</a>
@@ -80,12 +88,12 @@
           class="hero-photo"
           id="hero-static-photo"
           data-src="product-photo.webp"
-          alt="hunch fiber pouch and single-serve stick pack on a desk with a shaker bottle, plant, and notebook"
+          alt="hunch fibre pouch and single-serve stick pack on a desk with a shaker bottle, plant, and notebook"
           width="1312" height="1199">
 
         <div class="hero-carousel" id="hero-carousel">
           <div class="hero-slide">
-            <img data-src="carousel-front.webp" alt="hunch fiber pouch and stick pack on a table with a plant and water glass" width="500" height="495">
+            <img data-src="carousel-front.webp" alt="hunch fibre pouch and stick pack on a table with a plant and water glass" width="500" height="495">
             <div class="hero-slide-scrim-top"></div>
             <div class="hero-slide-scrim"></div>
             <div class="hero-brand-overlay">
@@ -94,36 +102,25 @@
                 <span class="brand-lockup-sub">fibre</span>
               </div>
               <h1>one ingredient,<br>done right.</h1>
-              <p class="hero-tagline">A daily fibre supplement.</p>
+              <p class="hero-tagline">A daily psyllium husk fibre supplement.</p>
               <a href="#waitlist" class="btn btn-primary">join the waitlist</a>
             </div>
             <div class="hero-slide-caption">
-              <strong class="hero-slide-problem">Protein bloat you can't figure out.</strong>
-              <span class="hero-slide-solution">It doesn't just add fiber. It helps move the rest of your meal through.</span>
+              <strong class="hero-slide-problem">You track protein, calories and steps.</strong>
+              <span class="hero-slide-solution">Fibre is the missing number.</span>
             </div>
           </div>
           <div class="hero-slide">
-            <img data-src="texture-divider.webp" alt="hunch fiber stick pack lying in a pile of psyllium husk powder" width="456" height="498" loading="lazy">
-            <div class="hero-slide-scrim"></div>
-            <div class="hero-slide-caption">
-              <strong class="hero-slide-problem">The post-lift crash you blame on timing.</strong>
-              <span class="hero-slide-solution">Steadier digestion, steadier energy — it was never just timing.</span>
-            </div>
+            <img data-src="texture-divider.webp" alt="hunch fibre stick pack lying in a pile of psyllium husk powder" width="456" height="498" loading="lazy">
           </div>
           <div class="hero-slide">
-            <img data-src="carousel-back-label.webp" alt="Back of the hunch fiber pouch showing ingredients and directions for use" width="496" height="500" loading="lazy">
-            <div class="hero-slide-scrim"></div>
-            <div class="hero-slide-caption">
-              <strong class="hero-slide-problem">Hungry two hours after a "clean" meal.</strong>
-              <span class="hero-slide-solution">It swells in your gut and keeps you full — longer than protein alone.</span>
-            </div>
+            <img data-src="carousel-back-label.webp" alt="Back of the hunch fibre pouch showing ingredients and directions for use" width="496" height="500" loading="lazy">
           </div>
           <div class="hero-slide">
-            <img data-src="carousel-topdown.webp" alt="Top-down view of the hunch fiber pouch and stick pack next to a bowl of powder and a glass of water" width="500" height="464" loading="lazy">
+            <img data-src="carousel-topdown.webp" alt="Top-down view of the hunch fibre pouch and stick pack next to a bowl of powder and a glass of water" width="500" height="464" loading="lazy">
             <div class="hero-slide-scrim"></div>
             <div class="hero-slide-caption">
-              <strong class="hero-slide-problem">We got you.</strong>
-              <span class="hero-slide-solution">one ingredient, nothing else.</span>
+              <strong class="hero-slide-problem">one ingredient, nothing else.</strong>
             </div>
           </div>
         </div>
@@ -133,6 +130,7 @@
           <button class="dot" aria-label="Slide 3"></button>
           <button class="dot" aria-label="Slide 4"></button>
         </div>
+        <p class="preview-note hero-preview-note">pack shown is a preview.</p>
       </div>
     </div>
   </section>
@@ -200,8 +198,8 @@
   <section class="problem reveal" id="problem">
     <div class="wrap">
       <p class="eyebrow eyebrow-dark">the gap</p>
-      <h2><span class="word-reveal" style="--i:0">your</span> <span class="word-reveal" style="--i:1">macros</span> <span class="word-reveal" style="--i:2">are</span> <span class="word-reveal" style="--i:3">dialed</span> <span class="word-reveal" style="--i:4">in.</span><br><span class="word-reveal" style="--i:5">your</span> <span class="word-reveal" style="--i:6">fiber</span> <span class="word-reveal" style="--i:7">isn't.</span></h2>
-      <p class="lede">Protein, creatine, timing, macros — all dialed in. Fiber's the one you never touch.</p>
+      <h2><span class="word-reveal" style="--i:0">your</span> <span class="word-reveal" style="--i:1">macros</span> <span class="word-reveal" style="--i:2">are</span> <span class="word-reveal" style="--i:3">dialed</span> <span class="word-reveal" style="--i:4">in.</span><br><span class="word-reveal" style="--i:5">your</span> <span class="word-reveal" style="--i:6">fibre</span> <span class="word-reveal" style="--i:7">isn't.</span></h2>
+      <p class="lede">Protein, creatine, timing, macros — all dialed in. Fibre's the one you never touch.</p>
 
       <div class="stat-row-wrap reveal">
         <div class="macro-ring" aria-hidden="true">
@@ -217,7 +215,7 @@
         <div class="stat-callout">
           <div class="stat-item">
             <span class="stat-number" data-count-a="15" data-count-b="20" data-suffix="g">15–20g</span>
-            <span class="stat-caption">average daily fiber intake in India</span>
+            <span class="stat-caption">average daily fibre intake in India</span>
           </div>
           <div class="stat-vs" aria-hidden="true">vs</div>
           <div class="stat-item">
@@ -231,19 +229,19 @@
         <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13293455/" target="_blank" rel="noopener">Source: peer-reviewed study, PMC, 2026 ↗</a>
       </p>
 
-      <p class="lede">That post-workout crash isn't a timing problem. It's a low-fiber blood-sugar spike — and drop.</p>
+      <p class="lede">That post-workout crash isn't a timing problem. It's a low-fibre blood-sugar spike — and drop.</p>
 
       <div class="problem-photo-inset">
         <img
           src="lifestyle-books.webp"
-          alt="hunch fiber pouch and stick pack next to a stack of habit and nutrition books, with a mug"
+          alt="hunch fibre pouch and stick pack next to a stack of habit and nutrition books, with a mug"
           width="512" height="512"
           loading="lazy"
           class="inset-photo">
       </div>
 
-      <p class="lede">Fibermaxxing: 0 to 40g overnight — the ego lift of nutrition. hunch is the warm-up set. 5g. One sachet at a time.</p>
-      <p class="lede lede-strong">You can't out-supplement a fiber deficit.</p>
+      <p class="lede">Fibremaxxing: 0 to 40g overnight — the ego lift of nutrition. hunch is the warm-up set. 5g. One sachet at a time.</p>
+      <p class="lede lede-strong">You can't out-supplement a fibre deficit.</p>
     </div>
   </section>
 
@@ -256,7 +254,7 @@
     <div class="wrap solution-inner">
       <div class="solution-copy">
         <p class="eyebrow">the fix · flagship release</p>
-        <h2><span class="word-reveal" style="--i:0">hunch</span> <span class="word-reveal" style="--i:1">fiber.</span><br><span class="word-reveal" style="--i:2">one</span> <span class="word-reveal" style="--i:3">ingredient.</span> <span class="word-reveal" style="--i:4">no</span> <span class="word-reveal" style="--i:5">chaser</span> <span class="word-reveal" style="--i:6">required.</span></h2>
+        <h2><span class="word-reveal" style="--i:0">hunch</span> <span class="word-reveal" style="--i:1">fibre.</span><br><span class="word-reveal" style="--i:2">one</span> <span class="word-reveal" style="--i:3">ingredient.</span> <span class="word-reveal" style="--i:4">no</span> <span class="word-reveal" style="--i:5">chaser</span> <span class="word-reveal" style="--i:6">required.</span></h2>
         <p class="lede">The one format that fits next to everything else in your bag.</p>
         <p class="claim">100% husk. Nothing else. One clear job.</p>
 
@@ -266,33 +264,22 @@
           <li>Plant-based &amp; unflavoured</li>
         </ul>
 
-        <p class="usage">Rip a sachet. Mix into water or your shaker. Drink.</p>
         <p class="usage">Chia and ashwagandha are next in the lineup.</p>
 
         <details class="why-psyllium">
           <summary>why psyllium, specifically?</summary>
           <p>
-            Not all fiber is the same. Psyllium is viscous — it gels with water — which is why it's one of
-            the few fibers with an FDA-recognized heart-health claim behind it (7g+/day, as part of a diet
+            Not all fibre is the same. Psyllium is viscous — it gels with water — which is why it's one of
+            the few fibres with an FDA-recognized heart-health claim behind it (7g+/day, as part of a diet
             low in saturated fat and cholesterol, may reduce coronary heart disease risk) and shown to help
             regulate blood sugar. That's a US regulatory standard, cited here as the evidence bar psyllium
-            clears — not a claim about this product's regulatory status in India. A lot of fiber supplements
+            clears — not a claim about this product's regulatory status in India. A lot of fibre supplements
             use non-gelling types that are milder but have a thinner evidence base and can cause more gas as
             they ferment. We picked psyllium because the science behind it is the strongest, not because
             it's the easiest to hide in a drink.
           </p>
           <p class="why-psyllium-source">
             <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-101/subpart-E/section-101.81" target="_blank" rel="noopener">Source: US FDA health claim regulation, 21 CFR 101.81 ↗</a>
-          </p>
-        </details>
-
-        <details class="why-psyllium">
-          <summary>how to use it</summary>
-          <p>
-            Start with one sachet a day, mixed into a full glass of water or your shaker — drink it
-            fairly quickly before it thickens, then follow up with a bit more water. Morning, post-workout,
-            whenever it fits into your day — consistency matters more than timing. Give your gut three to
-            five days to adjust.
           </p>
         </details>
 
@@ -303,12 +290,36 @@
         </div>
       </div>
       <div class="solution-visual">
-        <img
-          class="product-photo"
-          src="product-photo-crop.webp"
-          alt="hunch fiber pouch and single-serve stick pack, close crop"
-          width="750" height="970"
-          loading="lazy">
+        <figure class="product-figure">
+          <img
+            class="product-photo"
+            src="product-photo-crop.webp"
+            alt="hunch fibre pouch and single-serve stick pack, close crop"
+            width="750" height="970"
+            loading="lazy">
+          <figcaption class="preview-note">pack shown is a preview.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="how-strip" id="how-to-use">
+        <p class="how-strip-title">how to use it</p>
+        <ol class="how-steps">
+          <li>
+            <span class="how-label">how much</span>
+            <span class="how-value">1 sachet</span>
+          </li>
+          <li>
+            <span class="how-label">how to mix</span>
+            <span class="how-value">Stir into a full glass of water</span>
+          </li>
+          <li>
+            <span class="how-label">when</span>
+            <span class="how-value">Drink immediately</span>
+          </li>
+        </ol>
+        <p class="how-note">Drink plenty of water. Don't inhale the powder.</p>
       </div>
     </div>
   </section>
@@ -320,14 +331,27 @@
       <h2><span class="word-reveal" style="--i:0">be</span> <span class="word-reveal" style="--i:1">first</span> <span class="word-reveal" style="--i:2">to</span> <span class="word-reveal" style="--i:3">close</span> <span class="word-reveal" style="--i:4">the</span> <span class="word-reveal" style="--i:5">gap.</span></h2>
       <p class="lede lede-light">Ships soon. Get notified first — plus early pricing.</p>
 
-      <form id="waitlist-form" class="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <label for="email" class="sr-only">Email address</label>
-        <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
-        <input type="hidden" name="_subject" value="New hunch waitlist signup">
-        <button type="submit" class="btn btn-light">join the waitlist</button>
-      </form>
-      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-      <p class="hero-note hero-note-light">one email, when it matters. unsubscribe anytime.</p>
+      <div id="waitlist-signup">
+        <form id="waitlist-form" class="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label for="email" class="sr-only">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
+          <input type="hidden" name="_subject" value="New hunch waitlist signup">
+          <input type="hidden" name="utm_source" value="">
+          <input type="hidden" name="utm_campaign" value="">
+          <input type="hidden" name="utm_content" value="">
+          <button type="submit" class="btn btn-light">join the waitlist</button>
+        </form>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        <p class="hero-note hero-note-light">one email, when it matters. unsubscribe anytime.</p>
+        <p class="hero-note hero-note-light privacy-note">We use your email for launch updates only, and Meta Pixel to measure our ads.</p>
+      </div>
+
+      <div id="waitlist-thanks" class="waitlist-thanks" tabindex="-1" hidden>
+        <p class="thanks-title">you're on the list.</p>
+        <p class="thanks-body">We'll email you the moment sachets drop.</p>
+        <!-- FOUNDING-MEMBER LINE: paste the copy inside this paragraph and delete the hidden attribute. Until then nothing shows. -->
+        <p id="founding-line" class="thanks-founding" hidden></p>
+      </div>
     </div>
   </section>
 
@@ -344,7 +368,7 @@
       <div class="footer-word">hunch</div>
       <div class="footer-word-sub">fibre</div>
     </div>
-    <p class="footer-tagline">single-ingredient superfoods. fiber's just the first.</p>
+    <p class="footer-tagline">single-ingredient superfoods. fibre's just the first.</p>
     <div class="footer-links">
       <a href="#waitlist">waitlist</a>
       <a href="https://instagram.com" target="_blank" rel="noopener">instagram</a>

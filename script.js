@@ -4,6 +4,26 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const form = document.getElementById('waitlist-form');
 const status = document.getElementById('form-status');
+const signupBlock = document.getElementById('waitlist-signup');
+const thanksBlock = document.getElementById('waitlist-thanks');
+
+// ---------- ad attribution: carry utm_* into the hidden form fields ----------
+// Persisted in sessionStorage so a visitor who lands with UTMs and scrolls/reloads
+// still submits with them. Storage can throw (private mode), so it's best-effort.
+
+['utm_source', 'utm_campaign', 'utm_content'].forEach(function (key) {
+  const field = form.elements[key];
+  if (!field) return;
+  let value = new URLSearchParams(window.location.search).get(key);
+  try {
+    if (value) {
+      sessionStorage.setItem(key, value);
+    } else {
+      value = sessionStorage.getItem(key);
+    }
+  } catch (err) {}
+  field.value = value || '';
+});
 
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
@@ -22,6 +42,7 @@ form.addEventListener('submit', async function (e) {
 
   const submitBtn = form.querySelector('button[type="submit"]');
   submitBtn.disabled = true;
+  status.classList.remove('is-error');
   status.textContent = 'joining…';
 
   try {
@@ -32,12 +53,21 @@ form.addEventListener('submit', async function (e) {
     });
 
     if (res.ok) {
+      // Tracking must never turn a successful signup into an error message.
+      try {
+        if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+      } catch (trackErr) {}
       form.reset();
-      status.textContent = "you're on the list. we'll email you when sachets drop.";
+      status.textContent = '';
+      signupBlock.hidden = true;
+      thanksBlock.hidden = false;
+      thanksBlock.focus();
     } else {
+      status.classList.add('is-error');
       status.textContent = 'something went wrong — try again in a bit.';
     }
   } catch (err) {
+    status.classList.add('is-error');
     status.textContent = 'something went wrong — check your connection and try again.';
   } finally {
     submitBtn.disabled = false;

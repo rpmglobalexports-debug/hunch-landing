@@ -94,6 +94,8 @@ img, svg { max-width: 100%; }
 
 a { color: inherit; }
 
+[hidden] { display: none !important; }
+
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;
@@ -487,39 +489,14 @@ a { color: inherit; }
   max-width: 13ch;
 }
 
-.hero-flagship {
-  font-size: clamp(1.1rem, 2.6vw, 1.35rem);
-  max-width: 34ch;
-  margin: 18px 0 20px;
-  color: var(--ink);
-}
-
-.hero-flagship strong {
-  color: var(--olive-dark);
-}
-
-.hero-problems {
-  list-style: none;
-  margin: 0 0 24px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.hero-problems li {
+.hero-gap {
+  margin: 18px 0 28px;
   font-weight: 700;
   font-size: clamp(1.4rem, 3.4vw, 1.9rem);
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--ink);
-}
-
-.hero-close {
-  font-weight: 700;
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
-  color: var(--olive-dark);
-  margin: 0 0 28px;
+  text-wrap: balance;
 }
 
 .hero-actions {
@@ -915,6 +892,103 @@ a { color: inherit; }
   justify-content: center;
 }
 
+.product-figure {
+  margin: 0;
+  width: 100%;
+  max-width: 460px;
+}
+
+.preview-note {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Hero: below the carousel dots on mobile (same look as above); on desktop the
+   photo fills the whole cell, so the note sits on it as a small pill instead. */
+.is-mobile-hero .hero-preview-note {
+  margin: 0;
+  padding-bottom: 14px;
+}
+
+.is-desktop-hero .hero-preview-note {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2;
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: rgba(246, 241, 231, 0.92);
+  background: rgba(20, 21, 15, 0.55);
+}
+
+/* ---------- how to use strip ---------- */
+
+.how-strip {
+  margin-top: 56px;
+  padding: 28px 32px;
+  background: var(--cream-alt);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--lime);
+  border-radius: var(--radius);
+}
+
+.how-strip-title {
+  margin: 0 0 18px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--olive-dark);
+}
+
+.how-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.how-steps li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.how-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.how-value {
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.how-note {
+  margin: 20px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--olive-dark);
+}
+
+@media (min-width: 720px) {
+  .how-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+}
+
 .product-photo {
   width: 100%;
   max-width: 460px;
@@ -1003,6 +1077,47 @@ a { color: inherit; }
   font-size: 0.85rem;
   margin: 4px 0 8px;
   color: var(--lime);
+}
+
+.form-status.is-error {
+  color: #FFB8A8;
+}
+
+.privacy-note {
+  margin: 6px 0 0;
+}
+
+.waitlist-thanks {
+  margin: 28px 0 0;
+  padding: 28px 32px;
+  background: rgba(246, 241, 231, 0.08);
+  border: 1px solid rgba(246, 241, 231, 0.3);
+  border-left: 4px solid var(--lime);
+  border-radius: var(--radius);
+}
+
+.waitlist-thanks:focus {
+  outline: none;
+}
+
+.thanks-title {
+  margin: 0 0 6px;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--lime);
+}
+
+.thanks-body,
+.thanks-founding {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--cream);
+}
+
+.thanks-founding {
+  margin-top: 12px;
 }
 
 /* ---------- section swoosh divider ---------- */
