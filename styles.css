@@ -1072,6 +1072,17 @@ a { color: inherit; }
   border-color: var(--lime);
 }
 
+/* Honeypot: off-screen rather than display:none, since some bots skip display:none fields. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .form-status {
   min-height: 1.2em;
   font-size: 0.85rem;
